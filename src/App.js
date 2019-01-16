@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import routes from './routes'
+import PrimarySearchBarApp from './components/Appbar/Appbar'
+import TemporaryDrawer from './components/SideDrawer/Sidedrawer'
+
+
 
 class App extends Component {
+
+
+
+handleClick(val) {
+    axios.get(`https://itunes.apple.com/search?term=kendrick+lamar&limit=1`)
+    .then(res => {
+      console.log(res.data)
+      console.log("req received")
+    })
+  };
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <PrimarySearchBarApp></PrimarySearchBarApp>
+        
+        <Button onClick={() => this.handleClick()} variant="contained">Click Me</Button>
+        {routes}
       </div>
     );
   }

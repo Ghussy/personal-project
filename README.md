@@ -66,3 +66,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+--------------------
+to make a react carousel - https://react-slick.neostack.com
+
+to make a parallax - https://www.npmjs.com/package/react-parallax
+
