@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from '@material-ui/core/Button';
-import axios from 'axios';
 import routes from './routes'
 import PrimarySearchBarApp from './components/Appbar/Appbar'
-import TemporaryDrawer from './components/SideDrawer/Sidedrawer'
 
 
 
 class App extends Component {
 
+constructor(props) {
+  super(props)
+  this.state={
+  open: false
+  }
+}
+  
 
-
-handleClick(val) {
-    axios.get(`https://itunes.apple.com/search?term=kendrick+lamar&limit=1`)
-    .then(res => {
-      console.log(res.data)
-      console.log("req received")
-    })
+   toggleDrawer = (open) => () => {
+    this.setState({ open : true });
+    console.log('Juul has been hit')
   };
+
+
 
 
   render() {
     return (
       <div className="App">
-        <PrimarySearchBarApp></PrimarySearchBarApp>
+        <PrimarySearchBarApp ></PrimarySearchBarApp>
+      
         
-        <Button onClick={() => this.handleClick()} variant="contained">Click Me</Button>
         {routes}
       </div>
     );

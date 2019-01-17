@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-export default class Profile extends Component {
+export default class Settings extends Component {
 
 
     render() {
 
         return(
-            <h1>Profile</h1>
+            <h1>Settings</h1>
         )
     }
 

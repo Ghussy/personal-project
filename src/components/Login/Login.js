@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUsername, updateProfilePic } from '../ducks/reducer'
+import './Login.scss'
+
+
+import LoginInput from './LoginInput'
 
 
 class Login extends Component {
@@ -37,24 +41,41 @@ class Login extends Component {
         } else{ alert(res.data.message)}
     }
 
+    handleUsername = ({ target: { value } }) => {
+        this.setState({
+            ...this.state,
+            username: value
+        })
+    }
+    
+    handlePassword = ({ target: { value } }) => {
+        this.setState({
+            ...this.state,
+            password: value
+        })
+    }
+    
 
 render() {
 
 
-
     return(
         <div>
-            <h1>Auth</h1>
+            <div className='login-container'>
+            <h1>Login</h1>
             <p>
-                    <span>Username: </span>
-                    <input onChange={(e) => this.setState({ username: e.target.value })} type='text' />
+                    {/* <span>Username: </span>
+                    <input onChange={(e) => this.setState({ username: e.target.value })} type='text' /> */}
+                   <LoginInput handleUsername = {this.handleUsername} handlePassword= {this.handlePassword}></LoginInput>
+       
                 </p>
                 <p>
-                    <span>password: </span>
-                    <input onChange={(e) => this.setState({ password: e.target.value })} type='text' />
+                    {/* <span>password: </span>
+                    <input onChange={(e) => this.setState({ password: e.target.value })} type='text' /> */}
                 </p>
             <button onClick={() => this.login()}>Login</button>
             <button onClick={() => this.register()}> Register </button>
+            </div>
         </div>
         
     )

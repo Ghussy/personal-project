@@ -4,8 +4,8 @@ import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 import Profile from './components/Profile/Profile';
 import Search from './components/Search/Search';
-import PrimarySearchAppBar from './components/Appbar/Appbar'
-
+import Settings from './components/Settings/Settings'
+import Playlists from './components/Playlists/Playlists'
 
 export default (
     <Switch>
@@ -13,7 +13,8 @@ export default (
         <Route path="/dashboard" component={Dashboard}></Route>
         <Route path="/profile" component={Profile}></Route>
         <Route path="/search" component={Search}></Route>
-        <Route path="/appbar" component={PrimarySearchAppBar}></Route>
+        <Route path="/playlists" component={Playlists}></Route> 
+        <Route path="/settings" component={Settings}></Route>
     </Switch>
 )
  
