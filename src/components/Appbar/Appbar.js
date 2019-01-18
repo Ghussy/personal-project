@@ -75,7 +75,7 @@ const styles = theme => ({
 function SearchAppBar(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
+    <div className={props.hideNav ? 'nav-hidden': classes.root}>
       <AppBar position="static">
         <Toolbar>
         

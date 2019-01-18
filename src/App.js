@@ -5,12 +5,14 @@ import PrimarySearchBarApp from './components/Appbar/Appbar'
 
 
 
+
 class App extends Component {
 
 constructor(props) {
   super(props)
   this.state={
-  open: false
+  open: false,
+  hideNav: true
   }
 }
   
@@ -22,17 +24,27 @@ constructor(props) {
 
 
 
-
   render() {
-    return (
-      <div className="App">
-        <PrimarySearchBarApp ></PrimarySearchBarApp>
+
+    if (document.location.href === 'http://localhost:3000/#/') {
+      return (<div className="App">
+        
+      {routes}
       
+     </div>)
+     } else { 
+ 
+     return (
+       <div className="App">
+        
+        <PrimarySearchBarApp/>
         
         {routes}
-      </div>
-    );
-  }
-}
+        
+       </div>
+     );
+   }
+ }
+ }
 
 export default App;

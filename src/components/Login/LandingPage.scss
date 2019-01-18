@@ -1,0 +1,14 @@
+.mid-page {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.side-column {
+    background-color: aqua;
+    width: 25vw;
+    box-sizing: border-box;
+}

@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updateUsername, updateProfilePic } from '../ducks/reducer'
-import './Login.scss'
+import { updateUsername, updateProfilePic } from '../ducks/reducer';
+import './Login.scss';
+import Card from './Card';
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import LoginInput from './LoginInput';
 
 
-import LoginInput from './LoginInput'
-
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    },
+    input: {
+        display: 'none',
+    },
+});
 
 class Login extends Component {
     constructor(props) {
@@ -19,26 +31,26 @@ class Login extends Component {
 
     async register() {
         const { username, password } = this.state
-       let res = await axios.post('/create-user', {username: username, password: password})
-       
-       if (res.data.loggedIn) {
-        this.props.updateUsername(res.data.user.username)
-        this.props.updateProfilePic(res.data.user.profile_pic)
-           this.props.history.push('/dashboard')
-           console.log(res.data.message)
-       } else{ alert( res.data.message ) }
-   }
+        let res = await axios.post('/create-user', { username: username, password: password })
 
-   async login() {
-       const { username, password } = this.state
-       const res = await axios.post('/login', { username: username, password: password})
-      
         if (res.data.loggedIn) {
             this.props.updateUsername(res.data.user.username)
             this.props.updateProfilePic(res.data.user.profile_pic)
             this.props.history.push('/dashboard')
             console.log(res.data.message)
-        } else{ alert(res.data.message)}
+        } else { alert(res.data.message) }
+    }
+
+    async login() {
+        const { username, password } = this.state
+        const res = await axios.post('/login', { username: username, password: password })
+
+        if (res.data.loggedIn) {
+            this.props.updateUsername(res.data.user.username)
+            this.props.updateProfilePic(res.data.user.profile_pic)
+            this.props.history.push('/dashboard')
+            console.log(res.data.message)
+        } else { alert(res.data.message) }
     }
 
     handleUsername = ({ target: { value } }) => {
@@ -47,41 +59,40 @@ class Login extends Component {
             username: value
         })
     }
-    
+
     handlePassword = ({ target: { value } }) => {
         this.setState({
             ...this.state,
             password: value
         })
     }
-    
-
-render() {
 
 
-    return(
-        <div>
-            <div className='login-container'>
-            <h1>Login</h1>
-            <p>
-                    {/* <span>Username: </span>
-                    <input onChange={(e) => this.setState({ username: e.target.value })} type='text' /> */}
-                   <LoginInput handleUsername = {this.handleUsername} handlePassword= {this.handlePassword}></LoginInput>
-       
-                </p>
-                <p>
-                    {/* <span>password: </span>
-                    <input onChange={(e) => this.setState({ password: e.target.value })} type='text' /> */}
-                </p>
-            <button onClick={() => this.login()}>Login</button>
-            <button onClick={() => this.register()}> Register </button>
+    render() {
+
+        const { classes } = this.props;
+
+        return (
+            <div>
+                <div className='login-container'>
+
+                    <p>
+                        
+                        <LoginInput handleUsername={this.handleUsername} handlePassword={this.handlePassword}></LoginInput>
+
+                    </p>
+                    
+                    <div className='button-container'>
+                        <Button variant="outlined" color="primary" onClick={() => this.login()}>Login</Button>
+                        <Button onClick={() => this.register()}> Register </Button>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-    )
 
+        )
+
+    }
 }
-}
 
 
-export default connect(null, {updateUsername, updateProfilePic})(Login)
+export default withRouter(connect(null, { updateUsername, updateProfilePic })(Login))

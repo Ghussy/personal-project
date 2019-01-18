@@ -13,6 +13,8 @@ import Dashboard from '@material-ui/icons/Dashboard'
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import LogoutIcon from '@material-ui/icons/ExitToApp'
+import SearchIcon from '@material-ui/icons/Search'
+import SubButton from '@material-ui/icons/Subscriptions'
 
 
 const useStyles = makeStyles({
@@ -60,6 +62,22 @@ function SwipeableTemporaryDrawer() {
            <Link to='/playlists' style={{ textDecoration: 'none' }}>
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <QueueMusic /> : <SettingsIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+          </Link>
+        ))}
+        {['Search'].map((text, index) => (
+          <Link to='/Search' style={{ textDecoration: 'none' }}>
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <SearchIcon /> : <SearchIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+          </Link>
+        ))}
+        {['Youtube'].map((text, index) => (
+          <Link to='/youtube' style={{ textDecoration: 'none' }}>
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <SubButton /> : <SubButton />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
           </Link>

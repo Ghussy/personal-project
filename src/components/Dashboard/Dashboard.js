@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from './Grid'
-import Grid2 from './Grid2'
+
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -12,8 +12,8 @@ export default class Dashboard extends Component {
         }
     }
 
-    componentDidMount(){
-       axios.get(`https://itunes.apple.com/us/rss/topsongs/limit=50/json`)
+    async componentDidMount(){
+       await axios.get(`https://itunes.apple.com/us/rss/topsongs/limit=50/json`)
         .then(res => {
             
           this.setState({
@@ -40,6 +40,8 @@ render() {
 
     return(
         <div>
+
+            <div>Trending Now</div>
             <Grid songData={this.state.songData}></Grid>
             {/* <Grid2></Grid2> */}
             
