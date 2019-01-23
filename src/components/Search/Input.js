@@ -17,7 +17,7 @@ const styles = theme => ({
 
 class ComposedTextField extends React.Component {
   state = {
-    username: 'Composed TextField',
+    artist: 'Composed TextField',
   };
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class ComposedTextField extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ username: event.target.value });
+    this.setState({ artist: event.target.value });
   };
 
   render() {
@@ -34,16 +34,9 @@ class ComposedTextField extends React.Component {
     return (
      
     <div>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="component-simple">Username</InputLabel>
-          <Input id="component-simple" value={this.state.Username} onChange={this.props.handleUsername} />
-        </FormControl>
-        <div>
-            
-        </div>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="component-simple">Password</InputLabel>
-          <Input id="component-simple" value={this.state.Password} onChange={this.props.handlePassword} />
+        <FormControl  className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Search Artists</InputLabel>
+          <Input id="component-simple"  value={this.state.input} onChange={this.props.handleInput2} />
         </FormControl>
         
       </div>

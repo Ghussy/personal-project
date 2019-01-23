@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import LogoutIcon from '@material-ui/icons/ExitToApp'
 import SearchIcon from '@material-ui/icons/Search'
-import SubButton from '@material-ui/icons/Subscriptions'
+
 
 
 const useStyles = makeStyles({
@@ -74,14 +74,8 @@ function SwipeableTemporaryDrawer() {
           </ListItem>
           </Link>
         ))}
-        {['Youtube'].map((text, index) => (
-          <Link to='/youtube' style={{ textDecoration: 'none' }}>
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <SubButton /> : <SubButton />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-          </Link>
-        ))}
+        
+        
         {['Settings'].map((text, index) => (
           <Link to='/Settings' style={{ textDecoration: 'none' }}>
           <ListItem button key={text}>

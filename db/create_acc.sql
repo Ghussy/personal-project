@@ -1,4 +1,4 @@
-INSERT INTO userz
+INSERT INTO primary_user
 (
     username, password
 )

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+.app {
+    background-color: rgb(211, 211, 211);
+    height: 100vh;
+}
+
+.trending {
+    width: 150px;
+    position: relative;
+   
+    height: 50px;
+    margin-bottom: -50px;
+    z-index:1;
+   
+
+}
+
+
+.words {
+    color: black;
+    
+    background: transparent;
+}
+
+
+.block {
+    background-color: rgb(144, 148, 148);
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-decoration-color: black
+}
+

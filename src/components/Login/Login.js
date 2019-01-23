@@ -29,14 +29,23 @@ class Login extends Component {
         }
     }
 
+    componentDidMount() {
+        this.forceUpdate();
+        axios.get(`/logout`)
+         .then(res => {
+           console.log(res)
+           })
+      }
+
+
     async register() {
         const { username, password } = this.state
         let res = await axios.post('/create-user', { username: username, password: password })
 
         if (res.data.loggedIn) {
             this.props.updateUsername(res.data.user.username)
-            this.props.updateProfilePic(res.data.user.profile_pic)
-            this.props.history.push('/dashboard')
+            // this.props.updateProfilePic(res.data.newUser.profile_pic)
+            this.props.history.push('/Settings')
             console.log(res.data.message)
         } else { alert(res.data.message) }
     }
@@ -47,9 +56,11 @@ class Login extends Component {
 
         if (res.data.loggedIn) {
             this.props.updateUsername(res.data.user.username)
-            this.props.updateProfilePic(res.data.user.profile_pic)
+            // this.props.updateProfilePic(res.data.user.profile_pic)
+            
             this.props.history.push('/dashboard')
             console.log(res.data.message)
+            console.log(res.data.user)
         } else { alert(res.data.message) }
     }
 

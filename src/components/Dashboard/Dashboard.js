@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from './Grid'
+import './Dashboard.scss'
 
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           songData: []
+           songData: [],
+           first_name: ''
         }
     }
 
@@ -19,9 +21,15 @@ export default class Dashboard extends Component {
           this.setState({
               songData: res.data.feed.entry
           })
-          console.log(this.state.songData)
+          
         })
-       
+        await axios.get(`/getUserInfo`)
+        .then(res => {
+          console.log(res)
+          this.setState({
+           first_name: res.data.first_name,
+          })
+        })
     }
 
     handleClick(val) {
@@ -38,19 +46,20 @@ export default class Dashboard extends Component {
 
 render() {
 
+    if(this.state.songData!==[]){
     return(
-        <div>
-
-            <div>Trending Now</div>
+        <div className='app'>
+            
+            <div className='trending'>
+                <div className='block'></div>
+                <div className='words'>Trending Music</div>            
+            </div>
             <Grid songData={this.state.songData}></Grid>
-            {/* <Grid2></Grid2> */}
+            <p>{`Welcome ${this.state.first_name}!`}</p>
             
-            <h1>Dashboard</h1>
-            <Button onClick={() => this.handleClick()} variant="contained">Click Me</Button>
-            {/* <p>{this.state.songData}</p> */}
-            
+           
         </div>
     )
-
+    }
 }
 }

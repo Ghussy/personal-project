@@ -4,10 +4,8 @@ const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller')
 
-
-const { SERVER_PORT, SECRET, CONNECTION_STRING } = process.env;
-
 const app = express();
+const { SERVER_PORT, SECRET, CONNECTION_STRING } = process.env;
 
 app.use(express.json());
 app.use(session({
@@ -26,3 +24,8 @@ massive(CONNECTION_STRING).then( (db) => {
 
 app.post('/create-user', controller.createUser)
 app.post('/login', controller.login)
+app.get('/getUserInfo', controller.getUserInfo)
+app.get('/logout', controller.logout)
+app.post('/create-playlist', controller.createPlaylist)
+app.get(`/getPlaylist`, controller.getPlaylist)
+app.delete('/delete/:playlist', controller.deletePlaylist)

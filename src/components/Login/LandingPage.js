@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Card from './Card'
 import './LandingPage.scss'
 import Alert from './Alert'
+import axios from 'axios'
 
 export default class LandingPage extends Component {
-
 
     render() {
 

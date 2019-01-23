@@ -1,3 +1,3 @@
 SELECT * 
-FROM userz
+FROM primary_user
 WHERE username = ${username}

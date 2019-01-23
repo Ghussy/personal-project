@@ -54,7 +54,7 @@ render(){
 
 const {classes} = this.props
 
-console.log(this.props.songData.country)
+
 
 return(
  

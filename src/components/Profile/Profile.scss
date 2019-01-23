@@ -1,0 +1,56 @@
+.page {
+    background-color: whitesmoke;
+    height: 100vh;
+    width: 100vw;
+}
+
+.banner {
+    height: 25vh;
+    background-color: aqua;
+}
+.avatar {
+  margin-left: -70vw;
+  position: relative;
+}
+
+.header {
+    height: 10vh;
+    background-color: white;
+    box-shadow: -1px 6px 8px #888888;
+}
+
+.dots {
+    margin-left: 90vw;
+}
+
+.tile1 {
+    margin-left:20px;
+    margin-top: 15px;
+    width: 20vw;
+}
+
+.tile2 {
+    margin-right:20px;
+    margin-top: 15px;
+    width: 20vw;
+}
+
+.chips {
+    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: stretch;
+    
+}
+
+.bottom {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
