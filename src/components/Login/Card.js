@@ -9,10 +9,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Login from './Login'
+import './Card.scss'
 
 const styles = {
   card: {
     maxWidth: 345,
+    
   },
   media: {
     height: 140,
@@ -29,11 +31,13 @@ function MediaCard(props) {
           image="https://cdn4.pitchfork.com/longform/371/greatesthits1440.jpg"
           title="Contemplative Reptile"
         />
-        <CardContent >
-          <Typography gutterBottom variant="h5" component="h2">
-          ‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎ ‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎‏‏‎ ‏‏‎ ‏‏‎‏‏‎‏‏‎ ‏‏‎ ‏‏‎‏‏‎ ‏‏‎‏‏‎  ‏‏‎‏‏‎ Login
-          </Typography>
-          <Login></Login>
+        <CardContent className='card-content' >
+          
+          
+            
+            <Login className='login'></Login>
+            
+          
         </CardContent>
       
       <CardActions>

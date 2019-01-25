@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import routes from './routes'
 import PrimarySearchBarApp from './components/Appbar/Appbar'
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -25,8 +26,8 @@ constructor(props) {
 
 
   render() {
-
-    if (document.location.href === process.env.REACT_APP_LOGIN ) {
+console.log(this.props.match)
+    if (this.props.match.path === '/' ) {
       return (<div className="App">
         
       {routes}
@@ -47,4 +48,4 @@ constructor(props) {
  }
  }
 
-export default App;
+export default withRouter(App);

@@ -87,11 +87,11 @@ class Login extends Component {
             <div>
                 <div className='login-container'>
 
-                    <p>
+                    
                         
                         <LoginInput handleUsername={this.handleUsername} handlePassword={this.handlePassword}></LoginInput>
 
-                    </p>
+                    
                     
                     <div className='button-container'>
                         <Button variant="outlined" color="primary" onClick={() => this.login()}>Login</Button>

@@ -55,7 +55,7 @@ export default class Profile extends Component {
 
         return (
             <div className='page'>
-                <div className="banner"></div>
+                <div className="banner"><img src={this.state.banner_pic} className="banner2"/></div>
                 <div className='avatar'>
                     <Avatar imgg={this.state.image} />
                 </div>

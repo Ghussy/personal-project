@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Alert from './Alert';
 import Card from './Card'
-import Table from './Table';
 import './Playlists.scss'
 import Loading from './Loading'
 
