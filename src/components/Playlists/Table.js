@@ -49,6 +49,8 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
+//INSERT SONG OBJECTS BELOW----------------------------------------------------//
+
 const rows = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
@@ -63,7 +65,7 @@ class EnhancedTableHead extends React.Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, name } = this.props;
 
     return (
       <TableHead>
@@ -156,7 +158,7 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            Nutrition
+            nutrition
           </Typography>
         )}
       </div>

@@ -7,6 +7,8 @@ import axios from 'axios';
 import Song from './Song'
 import './Search.scss'
 import SearchButton from './SearchButton'
+import Menu from './Menu'
+import Alert from './Alert'
 
 const { REACT_APP_API_KEY } = process.env;
 const $YOUTUBE_KEY = REACT_APP_API_KEY;
@@ -20,10 +22,28 @@ export default class Search extends Component {
             videoId: '',
             response: [],
             songList: [],
-            intervalId: 0
+            intervalId: 0,
+            userId: '',
+            playlists: []
         }
     }
 
+    async componentDidMount(){
+        await axios.get(`/getUserInfo`)
+         .then(res => {
+           this.setState({
+            userId: res.data.id,
+           })
+         })
+        await axios.get(`/getPlaylist`)
+        .then(res => {
+            this.setState({
+                playlists: res.data.playlists
+            })
+            console.log(res.data.message)
+            console.log(this.state.playlists)
+        })
+    }
  
     scrollStep() {
         if (window.pageYOffset === 0) {
@@ -70,7 +90,7 @@ export default class Search extends Component {
 
         let result = await searchYoutube($YOUTUBE_KEY, options)
         this.setState({ videoId: result.items[0].id.videoId })
-        console.log(this.state.songList)
+        
     }
 
 
@@ -88,6 +108,27 @@ export default class Search extends Component {
         this.setState({ intervalId: intervalId });
     }
 
+    saveSong = async(trackName, artistName, artworkUrl100, collectionName, trackId, previewUrl, genre, playlists) => {
+        // return console.log(trackName, artistName, artworkUrl100, collectionName, trackId, previewUrl, genre, playlists)
+        let res = await axios.post(`/save-song`, {
+            trackName: trackName,
+            artistName: artistName,
+            artworkUrl100: artworkUrl100,
+            collectionName: collectionName,
+            trackId: trackId,
+            previewUrl: previewUrl,
+            genre: genre,
+            playlists: playlists
+        })
+
+        if (res.data.song){
+
+            alert(res.data.message)
+            console.log(res.data.song)
+        }
+
+    }
+
 
     
 
@@ -97,14 +138,29 @@ export default class Search extends Component {
           let song = {
           title: element.trackName,
           artist: element.artistName,
-          artworkUrl100: element.artworkUrl100
+          artworkUrl100: element.artworkUrl100,
+          collectionName: element.collectionName,
+          trackId: element.trackId,
+          previewUrl: element.previewUrl,
+          genre: element.primaryGenreName
           }
           this.state.songList.push(song)
         });
         const results = this.state.songList.map(
             (song) => {
 
-                return <Song  handlePlay={this.handlePlay} trackName={song.title} artistName={song.artist} artworkUrl100={song.artworkUrl100}/>
+                return <Song 
+                playlists={this.state.playlists}
+                saveSong={this.saveSong}
+                 handlePlay={this.handlePlay}
+                  trackName={song.title}
+                   artistName={song.artist}
+                    artworkUrl100={song.artworkUrl100}
+                    collectionName={song.collectionName}
+                    trackId={song.trackId}
+                    previewUrl={song.previewUrl}
+                    genre={song.genre}
+                     />
                 
             }
         )
@@ -116,7 +172,7 @@ export default class Search extends Component {
                     <Input handleInput2={this.handleInput2}/>
                     <SearchButton handleClick={this.handleClick}/>
                     </div>
-                    
+                
                     <div className='results'>{results}</div>
                     
     
@@ -129,7 +185,8 @@ export default class Search extends Component {
                 
                 <Youtube videoId={this.state.videoId} />
                 {results}
-               
+                
+
             </>
         )
     }

@@ -71,7 +71,39 @@ module.exports = {
         const db = req.app.get('db');
         const playlistsUpdated = await db.delete_playlist({ playlist_name: playlist });
         res.status(200).send({ playlistUpdated: playlistsUpdated, message: 'playlist deleted'})
+    },
+
+    saveSong: async (req, res) => {
+        let userId = req.session.user.id
+        const { trackName, artistName, artworkUrl100, collectionName, trackId, previewUrl, genre, playlists } = req.body;
+        const db = req.app.get('db');
+        const playlistId = await db.search_playlist({ playlist: playlists})
+        const newSong = await db.create_song({
+             trackId: trackId,
+              userId: userId,
+               artistName: artistName,
+               collectionName: collectionName,
+               trackName: trackName,
+               artworkUrl100: artworkUrl100,
+               genre: genre,
+               playlistId: playlistId[0].id,
+               previewUrl: previewUrl 
+            })
+           
+        res.status(200).send({ message: 'song added', song: newSong })
+    },
+
+    getSongs: async (req, res) => {
+        let UserId = req.session.user.id
+        const { playlistName } = req.body;
+        console.log(playlistName)
+        const db = req.app.get('db');
+        const playlistId = await db.search_playlist({ playlist: playlistName})
+        console.log(playlistId[0])
+        const songList = await db.get_songs({ playlistId: playlistId[0].id })
+        res.status(200).send({ songList: songList })
     }
+
     
 
 

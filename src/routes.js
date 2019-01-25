@@ -7,6 +7,7 @@ import Settings from './components/Settings/Settings'
 import Playlists from './components/Playlists/Playlists'
 import Youtube from './components/Youtube/Youtube';
 import LandingPage from './components/Login/LandingPage';
+import Viewer from './components/Playlists/Viewer'
 
 export default (
     <Switch>
@@ -16,7 +17,7 @@ export default (
         <Route path="/search" component={Search}></Route>
         <Route path="/playlists" component={Playlists}></Route> 
         <Route path="/settings" component={Settings}></Route>
-        <Route path="/youtube" component={Youtube}></Route>
+        <Route path="/viewer" component={Viewer}></Route>
     </Switch>
 )
  

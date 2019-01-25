@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
 
 const styles = {
   card: {
@@ -22,6 +23,7 @@ function MediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
+    <Link to={{pathname: "/viewer", state: { playlistName: props.playlistName}}} style={{ textDecoration: 'none' }} >
       <CardActionArea onClick={()=>{props.handleCardClick(props.playlistName)}}>
         <CardMedia
           className={classes.media}
@@ -34,6 +36,7 @@ function MediaCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      </Link>
       <CardActions>
         <Button size="small" color="primary">
           Share

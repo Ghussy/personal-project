@@ -4,6 +4,7 @@ import Alert from './Alert';
 import Card from './Card'
 import Table from './Table';
 import './Playlists.scss'
+import Loading from './Loading'
 
 export default class Playlists extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ export default class Playlists extends Component {
             userId: '',
             playlists: [],
             playlistName: '',
-            playlistDelete: ''
+            playlistDelete: '',
+            load: 'no',
+            selectedPlaylist: ''
         }
     }
 
@@ -26,7 +29,8 @@ export default class Playlists extends Component {
         await axios.get(`/getPlaylist`)
         .then(res => {
             this.setState({
-                playlists: res.data.playlists
+                playlists: res.data.playlists,
+                load: 'yes'
             })
             console.log(res.data.message)
             console.log(this.state.playlists)
@@ -68,6 +72,9 @@ export default class Playlists extends Component {
 
      handleCardClick = (name) => {
          console.log(`${name} card clicked`)
+         this.setState({
+             selectedPlaylist: name
+         })
      }
     
 
@@ -89,9 +96,16 @@ export default class Playlists extends Component {
         let playlistName = e.playlist_name
         return <Card deletePlaylist={this.deletePlaylist} handleCardClick={this.handleCardClick} playlistName={playlistName}></Card>
     }
-
     )
 
+    if (this.state.load === 'no'){
+        return (
+            <div>
+            <h1>Please Wait</h1>
+            <Loading></Loading>
+            </div>
+        )
+            } else {
         return (
             <>
                 <h1>Playlists</h1>
@@ -104,7 +118,7 @@ export default class Playlists extends Component {
                 </div>
                 </div>
             </>
-        )
+        )}
     }
 
 
