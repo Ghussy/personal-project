@@ -14,6 +14,8 @@ app.use(session({
     saveUninitialized: false
 }))
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 massive(CONNECTION_STRING).then( (db) => {
     app.set('db', db)
     app.listen(SERVER_PORT, () => {

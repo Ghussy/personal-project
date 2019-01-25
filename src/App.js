@@ -26,7 +26,7 @@ constructor(props) {
 
   render() {
 
-    if (document.location.href === 'http://localhost:3000/#/') {
+    if (document.location.href === process.env.REACT_APP_LOGIN ) {
       return (<div className="App">
         
       {routes}
