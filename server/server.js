@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const controller = require('./controller')
 
+const path = require('path');
 const app = express();
 const { SERVER_PORT, SECRET, CONNECTION_STRING } = process.env;
 
@@ -33,3 +34,7 @@ app.get(`/getPlaylist`, controller.getPlaylist)
 app.delete('/delete/:playlist', controller.deletePlaylist)
 app.post('/save-song', controller.saveSong)
 app.post('/get-songs', controller.getSongs)
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
