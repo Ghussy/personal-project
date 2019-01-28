@@ -8,8 +8,8 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Sidedrawer from '../SideDrawer/Sidedrawer'
-
-
+import Logo from './LogoSmall.svg'
+import './Appbar.scss'
 
 
 const styles = theme => ({
@@ -81,16 +81,19 @@ function SearchAppBar(props) {
         
             <Sidedrawer />
           <h1>     ‏‏‎  ‏‏‎  ‏‏‎ ‏‏‎   </h1>
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-             Stay-Tuned
-          </Typography>
+          <div className='container'>
+
+          <img src={Logo} className='Logo'></img>
+          
+          </div>
           <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-           
+              onChange={(e)=>{props.handleInput(e)}}
+              onKeyPress={(e)=>props.enterPressed(e)}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

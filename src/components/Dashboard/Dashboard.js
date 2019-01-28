@@ -10,7 +10,8 @@ export default class Dashboard extends Component {
         super(props);
         this.state = {
            songData: [],
-           first_name: ''
+           first_name: '',
+           input: ''
         }
     }
 
@@ -44,19 +45,35 @@ export default class Dashboard extends Component {
        
       };
 
+      handleInput = ({ target: { value } }) => {
+        this.setState({
+            ...this.state,
+            input: value
+        })
+        console.log(this.state.input)
+    }
+
+    enterPressed = (event) => {
+        let code = event.keyCode || event.which;
+        if(code === 13) { //13 is the enter keycode
+            //Do stuff in here
+            console.log('button hit')
+        } 
+    }
+
+
 render() {
 
     if(this.state.songData!==[]){
     return(
         <div className='app'>
-        <PrimarySearchBarApp/>
+        <PrimarySearchBarApp handleInput={this.handleInput} enterPressed={this.enterPressed}/>
             
             <div className='trending'>
-                <div className='block'></div>
-                <div className='words'>Trending Music</div>            
+                <div className='block'> <h1 className='words'>Trending Music</h1>  </div>
             </div>
             <Grid songData={this.state.songData}></Grid>
-            <p>{`Welcome ${this.state.first_name}!`}</p>
+            <h1>{`Welcome ${this.state.first_name}!`}</h1>
             
            
         </div>

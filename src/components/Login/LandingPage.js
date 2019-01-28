@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import Card from './Card'
 import './LandingPage.scss'
 import Alert from './Alert'
-import axios from 'axios'
+import Logo from '../Login/Logo.svg'
 
 export default class LandingPage extends Component {
 
     render() {
 
         return (
-            <>
-                <h1>LandingPage</h1>
+            <div>
+            <div className='header2'>
+                <img src={Logo} className='Logo'></img>
                 <div className='mid-page'>
                     <div className='side-column' />
                     <Alert/>
                     <div className='side-column' />
                 </div>
-            </>
+
+            </div>
+            <div>
+                <img className='pic' src='https://images.unsplash.com/photo-1529176601319-48a49e19725c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'></img>
+                
+            </div>
+           </div> 
         )
     }
 

@@ -36,7 +36,7 @@ class ComposedTextField extends React.Component {
     <div>
         <FormControl  className={classes.formControl}>
           <InputLabel htmlFor="component-simple">Search Artists</InputLabel>
-          <Input id="component-simple"  value={this.state.input} onChange={this.props.handleInput2} />
+          <Input id="component-simple"  value={this.props.input2} onChange={this.props.handleInput2} />
         </FormControl>
         
       </div>

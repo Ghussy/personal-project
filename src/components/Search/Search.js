@@ -59,7 +59,8 @@ export default class Search extends Component {
     
 
      handleClick = async() => {
-        await axios.get(`https://itunes.apple.com/search?term=${this.state.input2}&limit=25`)
+        let replaced = this.state.input2.split(' ').join('+');
+        try {await axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=25;callback=test`, {headers: {'Access-Control-Allow-Headers': 'Content-Type'}})
         .then(res => {
             
           this.setState({
@@ -69,15 +70,17 @@ export default class Search extends Component {
               
           })
           console.log(res.data.results)
-        })
+        })}catch(error){
+            console.log(error)
+        }
        
       };
 
       handleInput2 = ({ target: { value } }) => {
-          let replaced = value.split(' ').join('+');
+          
         this.setState({
-            ...this.state,
-            input2: replaced
+            
+            input2: value
         })
     }
 
@@ -145,15 +148,16 @@ export default class Search extends Component {
           }
           this.state.songList.push(song)
         });
-        const results = this.state.songList.map(
+        const results = this.state.response.map(
             (song) => {
 
                 return <Song 
+                key={song.trackId}
                 playlists={this.state.playlists}
                 saveSong={this.saveSong}
                  handlePlay={this.handlePlay}
-                  trackName={song.title}
-                   artistName={song.artist}
+                  trackName={song.trackName}
+                   artistName={song.artistName}
                     artworkUrl100={song.artworkUrl100}
                     collectionName={song.collectionName}
                     trackId={song.trackId}
@@ -165,13 +169,17 @@ export default class Search extends Component {
         )
 
 
+
+
         if (this.state.videoId === ''){
             return (
                 <> 
                     <PrimarySearchBarApp/>
                  <div className='searchbar'>
-                    <Input handleInput2={this.handleInput2}/>
+                    <Input handleInput2={this.handleInput2}
+                    input2={this.state.input2}/>
                     <SearchButton handleClick={this.handleClick}/>
+
                     </div>
                 
                     <div className='results'>{results}</div>

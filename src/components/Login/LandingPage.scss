@@ -8,7 +8,31 @@
 }
 
 .side-column {
-    background-color: aqua;
+    background-color: transparent;
     width: 25vw;
     box-sizing: border-box;
+}
+
+.Logo {
+	width: 100vw;
+	padding: -50;
+	margin-bottom: -150px;
+	margin-top: -300px;
+}
+
+.header2 {
+	background-image: url(https://images.unsplash.com/photo-1478147427282-58a87a120781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=800);
+	width: 100vw;
+	height: 100vh;
+    box-shadow: -1px 6px 8px #888888;
+}
+
+.box {
+	background-color: aqua;
+	height: 250px;
+	
+}
+
+.pic {
+	width: 100vw;
 }
