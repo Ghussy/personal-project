@@ -7,6 +7,7 @@ import Chip from './Chip';
 import './Profile.scss'
 import Player from './Player'
 import axios from 'axios'
+import PrimarySearchBarApp from '../Appbar/Appbar'
 import { array } from 'prop-types';
 
 export default class Profile extends Component {
@@ -54,7 +55,9 @@ export default class Profile extends Component {
         )
 
         return (
+            
             <div className='page'>
+            <PrimarySearchBarApp/>
                 <div className="banner"><img src={this.state.banner_pic} className="banner2"/></div>
                 <div className='avatar'>
                     <Avatar imgg={this.state.image} />

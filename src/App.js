@@ -3,7 +3,8 @@ import './App.css';
 import routes from './routes'
 import PrimarySearchBarApp from './components/Appbar/Appbar'
 import { withRouter } from 'react-router-dom'
-
+import axios from 'axios'
+import { connect } from 'react-redux';
 
 
 
@@ -13,7 +14,8 @@ constructor(props) {
   super(props)
   this.state={
   open: false,
-  hideNav: true
+  hideNav: true,
+  user: {}
   }
 }
   
@@ -23,29 +25,35 @@ constructor(props) {
     console.log('Juul has been hit')
   };
 
+  componentDidMount = async() => {
+    let res = await axios('/getUserInfo')
+    this.setState({
+      user: res.data
+    })
+  }
+
+
 
 
   render() {
-console.log(this.props.match)
-    if (this.props.match.path === '/' ) {
+console.log(this.props.username)
+    
       return (<div className="App">
+        
         
       {routes}
       
      </div>)
-     } else { 
- 
-     return (
-       <div className="App">
-        
-        <PrimarySearchBarApp/>
-        
-        {routes}
-        
-       </div>
-     );
-   }
+    
+     
+   
  }
  }
 
-export default withRouter(App);
+ function MapStateToProps( reduxState ) {
+  const { username } = reduxState;
+  return {username}
+  
+ }
+
+export default withRouter(connect(MapStateToProps)(App));

@@ -4,6 +4,7 @@ import Alert from './Alert';
 import Card from './Card'
 import './Playlists.scss'
 import Loading from './Loading'
+import PrimarySearchBarApp from '../Appbar/Appbar'
 
 export default class Playlists extends Component {
     constructor(props) {
@@ -99,7 +100,9 @@ export default class Playlists extends Component {
 
     if (this.state.load === 'no'){
         return (
+            
             <div>
+            <PrimarySearchBarApp/>    
             <h1>Please Wait</h1>
             <Loading></Loading>
             </div>
@@ -107,6 +110,7 @@ export default class Playlists extends Component {
             } else {
         return (
             <>
+            <PrimarySearchBarApp/>
                 <h1>Playlists</h1>
                 <Alert input={this.state.playlistName} handleInput={this.handleInput} createPlaylist={this.createPlaylist} />
                 <div className="playlists">

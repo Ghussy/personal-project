@@ -23,19 +23,19 @@ const useStyles = makeStyles(theme => ({
 
 const currencies = [
     {
-        value: 'USD',
+        value: 'Male',
         label: 'Male',
     },
     {
-        value: 'EUR',
+        value: 'Prefer not to say',
         label: 'Prefer not to say',
     },
     {
-        value: 'BTC',
+        value: 'Female',
         label: 'Female',
     },
     {
-        value: 'JPY',
+        value: 'Other',
         label: 'Other',
     },
 ];
@@ -70,6 +70,7 @@ function OutlinedTextFields(props) {
                 className={classNames(classes.textField, classes.dense)}
                 margin="dense"
                 variant="outlined"
+                onChange={(e)=>props.handleLastName(e.target.value)}
             />
             <TextField
                 id="outlined-email-input"
@@ -80,6 +81,7 @@ function OutlinedTextFields(props) {
                 autoComplete="email"
                 margin="normal"
                 variant="outlined"
+                onChange={(e)=>props.handleEmail(e.target.value)}
             />
             <TextField
                 id="outlined-multiline-static"
@@ -90,6 +92,7 @@ function OutlinedTextFields(props) {
                 margin="normal"
                 variant="outlined"
                 helperText="140 characters limit"
+                onChange={(e)=>props.handleBio(e.target.value)}
             />
             <TextField
                 id="outlined-select-currency"
@@ -98,6 +101,7 @@ function OutlinedTextFields(props) {
                 className={classes.textField}
                 value={values.currency}
                 onChange={handleChange('currency')}
+                onChange={(e)=>props.handleGender(e.target.value)}
                 SelectProps={{
                     MenuProps: {
                         className: classes.menu,
@@ -121,8 +125,18 @@ function OutlinedTextFields(props) {
                 margin="dense"
                 variant="outlined"
                 fullWidth
+                onChange={(e)=>props.handleBanner(e.target.value)}
             />
-            
+             <TextField
+                id="outlined-dense"
+                label="Profile pic img url"
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense"
+                variant="outlined"
+                fullWidth
+                onChange={(e)=>props.handleProfilePic(e.target.value)}
+            />
+
         </form>
     );
 }

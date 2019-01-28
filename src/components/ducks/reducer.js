@@ -1,13 +1,14 @@
 const initialState = {
-    username: {},
-    id: {},
-    profilePic: {}
+    username: '',
+    id: '',
+    profilePic: ''
 }
 
 const UPDATE_USERNAME = 'UPDATE_USERNAME'
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC'
 
 export function updateUsername(username) {
+    
     return {
         type: UPDATE_USERNAME,
         payload: username

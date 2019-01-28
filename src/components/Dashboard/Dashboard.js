@@ -3,7 +3,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Grid from './Grid'
 import './Dashboard.scss'
-
+import PrimarySearchBarApp from '../Appbar/Appbar'
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -49,6 +49,7 @@ render() {
     if(this.state.songData!==[]){
     return(
         <div className='app'>
+        <PrimarySearchBarApp/>
             
             <div className='trending'>
                 <div className='block'></div>

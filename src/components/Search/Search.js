@@ -7,8 +7,7 @@ import axios from 'axios';
 import Song from './Song'
 import './Search.scss'
 import SearchButton from './SearchButton'
-import Menu from './Menu'
-import Alert from './Alert'
+import PrimarySearchBarApp from '../Appbar/Appbar'
 
 const { REACT_APP_API_KEY } = process.env;
 const $YOUTUBE_KEY = REACT_APP_API_KEY;
@@ -168,7 +167,9 @@ export default class Search extends Component {
 
         if (this.state.videoId === ''){
             return (
-                <>  <div className='searchbar'>
+                <> 
+                    <PrimarySearchBarApp/>
+                 <div className='searchbar'>
                     <Input handleInput2={this.handleInput2}/>
                     <SearchButton handleClick={this.handleClick}/>
                     </div>
@@ -182,7 +183,7 @@ export default class Search extends Component {
         return (
             <>
                 
-                
+                <PrimarySearchBarApp/>
                 <Youtube videoId={this.state.videoId} />
                 {results}
                 

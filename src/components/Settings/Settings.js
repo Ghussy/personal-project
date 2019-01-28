@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateUsername } from '../ducks/reducer';
 import InputFields from './InputFields'
-import classNames from 'classnames'
-import Dropzone from 'react-dropzone'
+// import Dropzone from 'react-dropzone'
 import Chips from './GenreChips'
 import Chips2 from './Chips'
 import axios from 'axios'
+import PrimarySearchBarApp from '../Appbar/Appbar';
+import UploadButton from './UploadButton';
+
+
 
 class Settings extends Component {
 
@@ -14,7 +17,13 @@ class Settings extends Component {
         super(props);
         this.state = {
             genreList: [],
-            firstName: ''
+            firstName: '',
+            lastName: '',
+            email: '',
+            bio: '',
+            gender: '',
+            banner_url: '',
+            profile_pic: ''
         }
     }
 
@@ -24,6 +33,29 @@ class Settings extends Component {
            console.log(res)
          })
      }
+
+     updateInfo = async() => {
+         console.log('button hit')
+         console.log(this.state)
+        let res = await axios.post(`/update-info`, {
+            genreList: this.state.genreList,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            bio: this.state.bio,
+            gender: this.state.gender,
+            banner_url: this.state.banner_url,
+            profile_pic: this.state.profile_pic
+        })
+
+        if (res.data.updatedInfo){
+
+            alert(res.data.message)
+            console.log(res.data.updatedInfo)
+        }
+
+    }
+
 
 
     onDrop = (acceptedFiles, rejectedFiles) => {
@@ -54,16 +86,73 @@ class Settings extends Component {
         console.log(name)
     }
 
+    handleLastName = (name) => {
+
+        this.setState({
+            lastName: name
+        })
+        console.log(name)
+    }
+    
+    handleEmail = (name) => {
+        this.setState({
+            email: name
+        })
+        console.log(name)
+    }
+
+    handleBio = (name) => {
+
+        this.setState({
+            bio: name
+        })
+        console.log(name)
+    }
+
+    handleGender = (name) => {
+
+        this.setState({
+            gender: name
+        })
+        console.log(name)
+    }
+
+    handleBanner = (name) => {
+
+        this.setState({
+            banner_url: name
+        })
+        console.log(name)
+    }
+
+    handleProfilePic = (name) => {
+        this.setState({
+            profile_pic: name
+        })
+        console.log(name)
+    }
+
+
+
     render() {
         console.log(this.state.genreList)
         return (
             <>
-                <h1>Settings</h1>
-                <InputFields handleFirstName={this.handleFirstName} />
+                <PrimarySearchBarApp/>
+                
+                <InputFields
+                    handleFirstName={this.handleFirstName}
+                    handleLastName ={this.handleLastName}
+                    handleEmail ={ this.handleEmail }     
+                    handleBio = { this.handleBio }   
+                    handleGender = { this.handleGender }
+                    handleBanner = { this.handleBanner }
+                    handleProfilePic = {this.handleProfilePic}
+                            />
                 <Chips2 array={this.state.genreList} chipDelete={this.chipDelete}/>
                 <Chips chipClick={this.chipClick} />
                 <div className='drop'>
-                    <Dropzone onDrop={this.onDrop}>
+                    {/* <Dropzone onDrop={this.onDrop}>
                         {({ getRootProps, getInputProps, isDragActive }) => {
                             return (
                                 <div
@@ -79,7 +168,9 @@ class Settings extends Component {
                                 </div>
                             )
                         }}
-                    </Dropzone>
+                    </Dropzone> */}
+                   <UploadButton updateInfo={()=>this.updateInfo()} />
+                
                 </div>
             </>
         )

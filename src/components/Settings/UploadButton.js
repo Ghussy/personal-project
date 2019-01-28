@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import SearchIcon from '@material-ui/icons/Search';
+import DoneIcon from '@material-ui/icons/DoneAll'
 
 const styles = theme => ({
   fab: {
@@ -18,9 +19,9 @@ function FloatingActionButtons(props) {
   return (
     <div>
     
-      <Fab  aria-label="Delete" className={classes.fab} onClick={props.handleClick}>
+      <Fab  aria-label="Delete" className={classes.fab} onClick={props.updateInfo}>
       ‏‏‎ ‏‏‎ ‏‏‎ 
-        <SearchIcon className={classes.extendedIcon} />
+        <DoneIcon className={classes.extendedIcon} />
   
       </Fab>
      

@@ -34,6 +34,7 @@ app.get(`/getPlaylist`, controller.getPlaylist)
 app.delete('/delete/:playlist', controller.deletePlaylist)
 app.post('/save-song', controller.saveSong)
 app.post('/get-songs', controller.getSongs)
+app.post('/update-info', controller.updateInfo)
 
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Table from './Table'
 import axios from 'axios'
 import './Viewer.scss'
+import PrimarySearchBarApp from '../Appbar/Appbar'
 
 export default class Viewer extends Component {
     constructor(props) {
@@ -32,19 +32,25 @@ export default class Viewer extends Component {
 
         const songs = this.state.songs.map((e) => {
             return (
+                <>
+                
                 <li className='audio'>
+                
                     <p>{e.track_name}</p>
                     <audio controls autoplay>
                         <source src={e.preview_url} type="audio/ogg" />
                         <source src={e.preview_url} type="audio/mpeg" />
                     </audio>
                 </li>
+                </>
             )
         })
 
 
         return (
             <>
+            <PrimarySearchBarApp/>
+
                 <h1>{this.state.playlistName}</h1>
                 <ul>
                     {songs}

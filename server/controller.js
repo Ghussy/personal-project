@@ -102,6 +102,25 @@ module.exports = {
         console.log(playlistId[0])
         const songList = await db.get_songs({ playlistId: playlistId[0].id })
         res.status(200).send({ songList: songList })
+    },
+
+    updateInfo: async (req, res) => {
+        let UserId = req.session.user.id;
+        console.log(UserId);
+        const { genreList, firstName, lastName, email, bio, gender, banner_url, profile_pic } = req.body;
+        const db = req.app.get('db');
+        const updatedInfo = await db.update_info({ 
+            genreList: genreList,
+            firstName: firstName, 
+            lastName: lastName,
+            email: email,
+            bio: bio,
+            gender: gender,
+            banner_url: banner_url,
+            profile_pic: profile_pic,
+            Id: UserId
+        })
+        res.status(200).send({ message: 'info updated', updatedInfo: updatedInfo })
     }
 
     

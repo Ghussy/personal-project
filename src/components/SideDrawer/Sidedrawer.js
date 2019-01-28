@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import LogoutIcon from '@material-ui/icons/ExitToApp'
 import SearchIcon from '@material-ui/icons/Search'
-
+import SubButton from '@material-ui/icons/Subscriptions'
 
 
 const useStyles = makeStyles({
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-function SwipeableTemporaryDrawer() {
+function SwipeableTemporaryDrawer(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -89,7 +89,7 @@ function SwipeableTemporaryDrawer() {
       <List>
         
         {['Logout'].map((text, index) => (
-          <Link to='/' style={{ textDecoration: 'none' }}>
+          <Link to={{pathname: "/", state: { toggleBar: false }}} style={{ textDecoration: 'none' }}>
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <LogoutIcon /> : <SettingsIcon />}</ListItemIcon>
             <ListItemText primary={text} />
