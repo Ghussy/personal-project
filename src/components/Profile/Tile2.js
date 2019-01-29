@@ -23,10 +23,10 @@ function PaperSheet(props) {
         </Typography>
         <Typography component="p">
         <ul>
-            <li>yooo</li>
-            <li>helllo</li>
-            <li>T next</li>
-            <li>adf</li>
+            <li>I'm Different</li>
+            <li>Run it!</li>
+            <li>Pipe it up</li>
+            <li>Te Bote</li>
            
         </ul>
         </Typography>

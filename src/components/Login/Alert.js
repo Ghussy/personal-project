@@ -21,7 +21,7 @@ function AlertDialogSlide() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Login</Button>
+      <Button color='secondary' variant="outlined" onClick={handleClickOpen}>Login</Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}
